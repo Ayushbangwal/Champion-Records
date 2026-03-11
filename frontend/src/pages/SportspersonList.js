@@ -1,3 +1,4 @@
+import SplashScreen from "../components/SplashScreen";
 import React from 'react';
 import { useQuery } from 'react-query';
 import { Loader2, Users, Filter } from 'lucide-react';
@@ -15,6 +16,7 @@ const SportspersonList = () => {
   });
 
   if (isLoading) {
+    return <SplashScreen />;
     return (
       <div className="flex justify-center items-center min-h-[400px]">
         <div className="text-center">
