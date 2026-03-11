@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <section className="text-center py-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl text-white">
+      <section className="text-center py-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl text-white shadow-xl">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Sportsperson Stats & Records
@@ -17,14 +17,14 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/sportspersons"
-              className="btn-primary bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg"
+              className="btn-primary bg-orange-500 text-white hover:bg-orange-600 px-8 py-3 text-lg"
             >
               <Users className="inline h-5 w-5 mr-2" />
               Browse Sportspersons
             </Link>
             <Link
               to="/sportspersons/add"
-              className="bg-blue-800 hover:bg-blue-900 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 text-lg"
+              className="bg-black hover:bg-gray-800 text-orange-500 font-medium py-3 px-8 rounded-lg transition-colors duration-200 text-lg"
             >
               <PlusCircle className="inline h-5 w-5 mr-2" />
               Add New Sportsperson
@@ -40,8 +40,8 @@ const Home = () => {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="h-8 w-8 text-blue-600" />
+            <div className="w-16 h-16 bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Users className="h-8 w-8 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">
               Comprehensive Profiles
@@ -53,8 +53,8 @@ const Home = () => {
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="h-8 w-8 text-green-600" />
+            <div className="w-16 h-16 bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-4">
+              <TrendingUp className="h-8 w-8 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">
               Performance Analytics
@@ -66,8 +66,8 @@ const Home = () => {
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Trophy className="h-8 w-8 text-yellow-600" />
+            <div className="w-16 h-16 bg-orange-300 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Trophy className="h-8 w-8 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800">
               Achievements & Records
