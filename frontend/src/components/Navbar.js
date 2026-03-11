@@ -22,13 +22,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <Trophy className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-gray-800">SportsStats</span>
+            <Trophy className="h-8 w-8 text-orange-500" />
+            <span className="text-xl font-bold text-white">SportsStats</span>
           </Link>
 
           {/* Desktop Navigation */}
