@@ -9,7 +9,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8fafc;
+  background-color: #0f172a;
+  color: white;
 }
 
 code {
@@ -20,27 +21,25 @@ code {
 /* Custom components */
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
   
   .btn-danger {
     @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
-  
   .card {
-    @apply bg-white rounded-lg shadow-md p-6 border border-gray-200;
-  }
-  
+  @apply bg-slate-800 rounded-xl shadow-lg p-6 border border-slate-700 hover:scale-105 transition duration-300;
+}   
   .stat-card {
-    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-6 shadow-lg;
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg p-6 shadow-lg;
   }
   
   .achievement-card {
-    @apply bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg p-6 shadow-lg;
+    @apply bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-lg p-6 shadow-lg;
   }
   
   .record-card {
