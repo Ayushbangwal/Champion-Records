@@ -40,22 +40,3 @@ function App() {
 }
 
 export default App;
-function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
-  if (loading) {
-    return <SplashScreen />;
-  }
-
-  return (
-    <div>
-      {/* your website */}
-    </div>
-  );
-}
