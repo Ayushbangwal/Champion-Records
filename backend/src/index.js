@@ -21,7 +21,7 @@ app.use(helmet()); // Security headers
 app.use(compression()); // Compress responses
 app.use(morgan('combined')); // HTTP request logger
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: "*",
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
