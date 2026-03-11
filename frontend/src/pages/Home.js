@@ -6,10 +6,10 @@ const Home = () => {
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <section className="text-center py-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl text-white shadow-xl">
+      <section className="text-center py-12 bg-gradient-to-r from-orange-600 via-red-600 to_yellow-500 rounded-2xl text-white shadow-xl">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Sportsperson Stats & Records
+          <h1 className="text-5xl md:text-7xl font-bold tracking-wide mb-4">
+            Champion Sports Records
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-blue-100">
             Track, manage, and explore sports statistics, achievements, and records
