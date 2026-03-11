@@ -1,3 +1,5 @@
+import SplashScreen from "./components/SplashScreen";
+import { useState, useEffect } from "react";
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -10,6 +12,7 @@ import SportspersonDetail from './pages/SportspersonDetail';
 import AddSportsperson from './pages/AddSportsperson';
 import EditSportsperson from './pages/EditSportsperson';
 import SearchResults from './pages/SearchResults';
+
 
 const queryClient = new QueryClient();
 
@@ -37,3 +40,22 @@ function App() {
 }
 
 export default App;
+function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
+  if (loading) {
+    return <SplashScreen />;
+  }
+
+  return (
+    <div>
+      {/* your website */}
+    </div>
+  );
+}
