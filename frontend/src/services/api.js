@@ -33,7 +33,7 @@ api.interceptors.response.use(
 );
 
 // Sportsperson API
-export const sportspersonAPI = {
+/*export const sportspersonAPI = {
   getAll: () => api.get('/sportspersons'),
   getById: (id) => api.get(`/sportspersons/${id}`),
   getDetails: (id) => api.get(`/sportspersons/${id}/details`),
@@ -46,7 +46,23 @@ export const sportspersonAPI = {
   delete: (id) => api.delete(`/sportspersons/${id}`),
   search: (query) => api.get(`/sportspersons/search?q=${query}`),
 };
+*/
 
+
+
+export const sportspersonAPI = {
+  getAll: () => api.get('/sportspersons'),
+  getById: (id) => api.get(`/sportspersons/${id}`),
+  getDetails: (id) => api.get(`/sportspersons/${id}/details`),
+  getStatistics: (id) => api.get(`/sportspersons/${id}/statistics`),
+  getAchievements: (id) => api.get(`/sportspersons/${id}/achievements`),
+  getRecords: (id) => api.get(`/sportspersons/${id}/records`),
+  getAwards: (id) => api.get(`/sportspersons/${id}/awards`),
+  create: (data) => api.post('/sportspersons', data),
+  update: (id, data) => api.put(`/sportspersons/${id}`, data),
+  delete: (id) => api.delete(`/sportspersons/${id}`),
+  search: (query) => api.get(`/sportspersons/search`, { params: { q: query } })
+};
 // Statistics API
 export const statisticsAPI = {
   getBySportsperson: (sportspersonId) => api.get(`/statistics/${sportspersonId}`),
