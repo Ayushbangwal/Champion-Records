@@ -103,9 +103,9 @@ const SportspersonDetail = () => {
           <div className="flex items-start space-x-6">
             {/* Profile Image */}
             <div className="flex-shrink-0">
-              {sportsperson.photo_url ? (
+              {sportsperson.image ? (
                 <img
-                  src={sportsperson.photo_url}
+                  src={sportsperson.image}
                   alt={`${sportsperson.first_name} ${sportsperson.last_name}`}
                   className="w-32 h-32 rounded-full object-cover border-4 border-gray-200"
                 />

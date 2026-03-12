@@ -30,9 +30,9 @@ const SportspersonCard = ({ sportsperson }) => {
       <div className="flex items-start space-x-4">
         {/* Profile Image */}
         <div className="flex-shrink-0">
-          {sportsperson.photo_url ? (
+          {sportsperson.image ? (
             <img
-              src={sportsperson.photo_url}
+              src={sportsperson.image}
               alt={`${sportsperson.first_name} ${sportsperson.last_name}`}
               className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
             />
