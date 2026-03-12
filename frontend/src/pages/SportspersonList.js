@@ -1,12 +1,12 @@
 import Loader from "../components/Loader";
 // import SplashScreen from "../components/SplashScreen";
-import React from 'react';
-import { useQuery } from 'react-query';
-import { Loader2, Users, Filter } from 'lucide-react';
+import React, { useState } from 'react';import { useQuery } from 'react-query';
+import { Loader2, Users, Filter, Search } from 'lucide-react';
 import SportspersonCard from '../components/SportspersonCard';
 import { sportspersonAPI } from '../services/api';
 
 const SportspersonList = () => {
+  const [search, setSearch] = useState("");
   const {
     data: sportspersons,
     isLoading,
@@ -64,6 +64,20 @@ const SportspersonList = () => {
           </button>
         </div>
       </div>
+<div className="relative mb-4">
+
+  <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+
+  <input
+    type="text"
+    placeholder="Search sportsperson..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="border border-gray-300 pl-10 pr-4 py-3 w-full rounded-lg text-black bg-white 
+    focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500"
+  />
+
+</div>
 
       {/* Stats Bar */}
       {sportspersons && sportspersons.length > 0 && (
@@ -81,11 +95,25 @@ const SportspersonList = () => {
 
       {/* Sportspersons Grid */}
       {sportspersons && sportspersons.length > 0 ? (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sportspersons.map((sportsperson) => (
-            <SportspersonCard key={sportsperson.id} sportsperson={sportsperson} />
-          ))}
-        </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {(sportspersons || [])
+  .filter((sportsperson) =>
+  !search ||
+  JSON.stringify(sportsperson).toLowerCase().includes(search.toLowerCase())
+)
+  .map((sportsperson) => {
+  console.log(sportsperson)
+
+  return (
+    <SportspersonCard
+      key={sportsperson.id}
+      sportsperson={sportsperson}
+    />
+  )
+})
+}
+</div> 
+
       ) : (
         <div className="text-center py-12">
           <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
