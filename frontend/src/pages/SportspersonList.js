@@ -7,6 +7,7 @@ import { sportspersonAPI } from '../services/api';
 
 const SportspersonList = () => {
   const [search, setSearch] = useState("");
+  const [sportFilter, setSportFilter] = useState("all");
   const {
     data: sportspersons,
     isLoading,
@@ -78,6 +79,53 @@ const SportspersonList = () => {
   />
 
 </div>
+<div className="flex gap-3 mb-6">
+
+<button
+onClick={() => setSportFilter("all")}
+className={`px-4 py-2 rounded-lg font-medium transition
+${sportFilter === "all"
+? "bg-blue-600 text-white"
+: "bg-gray-300 text-gray-700 hover:bg-gray-400"}
+`}
+>
+All
+</button>
+
+<button
+onClick={() => setSportFilter("cricket")}
+className={`px-4 py-2 rounded-lg font-medium transition
+${sportFilter === "cricket"
+? "bg-blue-600 text-white"
+: "bg-gray-300 text-gray-700 hover:bg-gray-400"}
+`}
+>
+Cricket
+</button>
+
+<button
+onClick={() => setSportFilter("football")}
+className={`px-4 py-2 rounded-lg font-medium transition
+${sportFilter === "football"
+? "bg-blue-600 text-white"
+: "bg-gray-300 text-gray-700 hover:bg-gray-400"}
+`}
+>
+Football
+</button>
+
+<button
+onClick={() => setSportFilter("tennis")}
+className={`px-4 py-2 rounded-lg font-medium transition
+${sportFilter === "tennis"
+? "bg-blue-600 text-white"
+: "bg-gray-300 text-gray-700 hover:bg-gray-400"}
+`}
+>
+Tennis
+</button>
+
+</div>
 
       {/* Stats Bar */}
       {sportspersons && sportspersons.length > 0 && (
@@ -97,11 +145,16 @@ const SportspersonList = () => {
       {sportspersons && sportspersons.length > 0 ? (
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
   {(sportspersons || [])
-  .filter((sportsperson) =>
-  !search ||
-  JSON.stringify(sportsperson).toLowerCase().includes(search.toLowerCase())
-)
-  .map((sportsperson) => {
+
+  .filter((sportsperson) => {
+
+  if (sportFilter === "all") return true
+return (
+  sportsperson.sport_categories &&
+sportsperson.sport_categories.name.toLowerCase() === sportFilter
+  )
+})
+.map((sportsperson) => {
   console.log(sportsperson)
 
   return (

@@ -31,11 +31,12 @@ const SportspersonCard = ({ sportsperson }) => {
         {/* Profile Image */}
         <div className="flex-shrink-0">
           {sportsperson.image ? (
-            <img
-              src={sportsperson.image}
-              alt={`${sportsperson.first_name} ${sportsperson.last_name}`}
-              className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
-            />
+           <img
+  src={sportsperson.image}
+  alt={`${sportsperson.first_name} ${sportsperson.last_name}`}
+  loading="lazy"
+  className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
+/>
           ) : (
             <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
               <span className="text-2xl font-bold text-gray-500">
