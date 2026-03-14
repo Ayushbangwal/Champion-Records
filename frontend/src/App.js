@@ -25,30 +25,54 @@ useEffect(() => {
     setLoading(false);
   }, 3000);
 }, []);
+const [darkMode, setDarkMode] = useState(() => {
+  const savedTheme = localStorage.getItem("theme");
+  return savedTheme === "dark";
+});
+
+const toggleDarkMode = () => {
+  setDarkMode(!darkMode);
+};
+useEffect(() => {
+  localStorage.setItem("theme", darkMode ? "dark" : "light");
+}, [darkMode]);
 
 if (loading) {
   return <SplashScreen />;
 }
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="min-h-screen bg-gray-50">
-          <Navbar />
-          <main className="container mx-auto px-4 py-8">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/sportspersons" element={<SportspersonList />} />
-              <Route path="/sportspersons/:id" element={<SportspersonDetail />} />
-              <Route path="/sportspersons/add" element={<AddSportsperson />} />
-              <Route path="/sportspersons/:id/edit" element={<EditSportsperson />} />
-              <Route path="/search" element={<SearchResults />} />
-              <Route path="/compare" element={<ComparePlayers />} />
-            </Routes>
-          </main>
-        </div>
-        <Toaster position="top-right" />
-      </Router>
-    </QueryClientProvider>
+  <Router>
+
+    <div className={darkMode ? "dark" : ""}>
+
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-white">
+
+        <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+        
+   
+          
+
+        <main className="container mx-auto px-4 py-8">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sportspersons" element={<SportspersonList />} />
+            <Route path="/sportspersons/:id" element={<SportspersonDetail />} />
+            <Route path="/sportspersons/add" element={<AddSportsperson />} />
+            <Route path="/sportspersons/:id/edit" element={<EditSportsperson />} />
+            <Route path="/search" element={<SearchResults />} />
+            <Route path="/compare" element={<ComparePlayers />} />
+          </Routes>
+        </main>
+
+      </div>
+
+    </div>
+
+    <Toaster position="top-right" />
+
+  </Router>
+</QueryClientProvider>
   );
 }
 export default App;

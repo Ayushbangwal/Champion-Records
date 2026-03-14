@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Moon, Sun } from "lucide-react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Search, Menu, X, Trophy, Users, Home, PlusCircle } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ toggleDarkMode, darkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
@@ -75,6 +76,12 @@ const Navbar = () => {
               className="search-input w-64"
             />
           </form>
+          <button
+  onClick={toggleDarkMode}
+  className="ml-4 text-white text-xl hidden md:block"
+>
+  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+</button>
 
           {/* Mobile menu button */}
           <button

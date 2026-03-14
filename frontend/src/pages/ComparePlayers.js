@@ -12,7 +12,7 @@ useEffect(() => {
   const loadPlayers = async () => {
     try {
       const res = await api.get("/sportspersons");
-      setPlayers(res.data.data);
+      setPlayers(res?.data?.data || []);
     } catch (err) {
       console.error("Error loading players:", err);
     }
@@ -25,9 +25,8 @@ const fetchPlayers = async () => {
     const res1 = await api.get(`/sportspersons/${id1}`);
     const res2 = await api.get(`/sportspersons/${id2}`);
 
-    const p1 = res1.data.data;
-    const p2 = res2.data.data;
-
+    const p1 = res1?.data?.data || {};
+    const p2 = res2?.data?.data || {};
     const img1 = await fetch(
       `https://en.wikipedia.org/api/rest_v1/page/summary/${p1.first_name}_${p1.last_name}`
     ).then(r => r.json());
@@ -66,11 +65,11 @@ const fetchPlayers = async () => {
 >
  <option value="">Select Player 1</option>
 
- {players.map((p) => (
-   <option key={p.id} value={p.id}>
-     {p.first_name} {p.last_name}
-   </option>
- ))}
+ {players?.map((p) => (
+  <option key={p.id} value={p.id}>
+    {p?.first_name || ""} {p?.last_name || ""}
+  </option>
+))}
 
 </select>
 
@@ -81,11 +80,11 @@ const fetchPlayers = async () => {
 >
  <option value="">Select Player 2</option>
 
- {players.map((p) => (
-   <option key={p.id} value={p.id}>
-     {p.first_name} {p.last_name}
-   </option>
- ))}
+ {players?.map((p) => (
+  <option key={p.id} value={p.id}>
+    {p?.first_name || ""} {p?.last_name || ""}
+  </option>
+))}
 
 </select>
     <button
@@ -104,13 +103,13 @@ const fetchPlayers = async () => {
     <div className="bg-slate-800 p-6 rounded-xl shadow-lg text-center">
 
 <img
-src={player1.image_url || "https://via.placeholder.com/150"}
+src={player1?.image_url || "https://via.placeholder.com/150"}
 alt={player1.first_name}
 className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
 />
 
 <h2 className="text-xl font-bold text-white text-center mb-2">
-{player1.first_name} {player1.last_name}
+{player1?.first_name || ""} {player1?.last_name || ""}
 </h2>
 
 <p className="text-gray-300 text-center">
@@ -140,7 +139,7 @@ className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
 />
 
 <h2 className="text-xl font-bold text-white text-center mb-2">
-{player2.first_name} {player2.last_name}
+{player1?.first_name || ""} {player1?.last_name || ""}
 </h2>
 
 <p className="text-gray-300 text-center">
