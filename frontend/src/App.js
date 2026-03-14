@@ -1,3 +1,4 @@
+import ComparePlayers from "./pages/ComparePlayers";
 import SplashScreen from "./components/SplashScreen";
 import { useState, useEffect } from "react";
 import React from 'react';
@@ -41,6 +42,7 @@ if (loading) {
               <Route path="/sportspersons/add" element={<AddSportsperson />} />
               <Route path="/sportspersons/:id/edit" element={<EditSportsperson />} />
               <Route path="/search" element={<SearchResults />} />
+              <Route path="/compare" element={<ComparePlayers />} />
             </Routes>
           </main>
         </div>
@@ -49,5 +51,4 @@ if (loading) {
     </QueryClientProvider>
   );
 }
-
 export default App;

@@ -47,6 +47,7 @@ const Navbar = () => {
               <Users className="inline h-4 w-4 mr-1" />
               Sportspersons
             </Link>
+
             <Link
               to="/sportspersons/add"
               className={`nav-link ${isActive('/sportspersons/add') ? 'active' : ''}`}
@@ -54,6 +55,13 @@ const Navbar = () => {
               <PlusCircle className="inline h-4 w-4 mr-1" />
               Add Sportsperson
             </Link>
+            <Link
+  to="/compare"
+  className={`nav-link ${isActive('/compare') ? 'active' : ''}`}
+>
+  <Trophy className="inline h-4 w-4 mr-1" />
+  Compare Players
+</Link>
           </div>
 
           {/* Search Bar */}
