@@ -47,6 +47,34 @@ const SportspersonDetail = () => {
     }
     return age;
   };
+  const achievementCount =
+  (sportsperson?.achievements?.length || 0) +
+  (sportsperson?.records?.length || 0) +
+  (sportsperson?.awards?.length || 0);
+
+  const timeline = [
+  ...(sportsperson?.achievements || []).map(a => ({
+    title: a.title,
+    date: a.achievement_date,
+    type: "Achievement"
+  })),
+
+  ...(sportsperson?.records || []).map(r => ({
+    title: r.record_type,
+    date: r.record_date,
+    type: "Record"
+  })),
+
+  ...(sportsperson?.awards || []).map(a => ({
+    title: a.award_name,
+    date: a.award_date,
+    type: "Award"
+  }))
+];
+
+const sortedTimeline = timeline.sort(
+  (a, b) => new Date(b.date) - new Date(a.date)
+);
 
   if (isLoading) {
     return (
@@ -255,6 +283,34 @@ const SportspersonDetail = () => {
           </div>
         </div>
       )}
+
+      {/* Achievements Timeline */}
+
+<div className="achievement-card">
+  <div className="flex items-center justify-between mb-4">
+    <h3 className="text-xl font-semibold">Achievements Timeline</h3>
+    <TrendingUp className="h-6 w-6" />
+  </div>
+
+  <div className="mb-4 font-medium">
+    Total Achievements: {achievementCount}
+  </div>
+
+  {sortedTimeline.length > 0 ? (
+    <div className="space-y-3">
+      {sortedTimeline.map((item, index) => (
+        <div key={index} className="bg-white/10 rounded-lg p-3">
+          <div className="font-medium">{item.title}</div>
+          <div className="text-sm opacity-90">
+            {item.type} • {formatDate(item.date)}
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p className="opacity-90">No achievements available</p>
+  )}
+</div>
     </div>
   );
 };
