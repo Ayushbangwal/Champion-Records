@@ -34,8 +34,7 @@ const EditSportsperson = () => {
           photo_url: data.photo_url || '',
           bio: data.bio || ''
         });
-      },
-      select: (response) => response.data,
+      }
     }
   );
 
@@ -74,7 +73,7 @@ const EditSportsperson = () => {
     updateMutation.mutate(formData);
   };
 
-  if (isLoading) {
+  if (isLoading || !sportsperson) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
         <div className="text-center">

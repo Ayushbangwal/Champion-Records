@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Moon, Sun } from "lucide-react";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Search, Menu, X, Trophy, Users, Home, PlusCircle } from 'lucide-react';
 
 const Navbar = ({ toggleDarkMode, darkMode }) => {
@@ -62,6 +62,14 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
 >
   <Trophy className="inline h-4 w-4 mr-1" />
   Compare Players
+</Link>
+
+<Link
+  to="/gallery"
+  className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}
+>
+  <Trophy className="inline h-4 w-4 mr-1" />
+  Gallery
 </Link>
           </div>
 

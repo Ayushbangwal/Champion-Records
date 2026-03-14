@@ -1,3 +1,4 @@
+import PlayerGallery from "./pages/PlayerGallery";
 import ComparePlayers from "./pages/ComparePlayers";
 import SplashScreen from "./components/SplashScreen";
 import { useState, useEffect } from "react";
@@ -62,6 +63,7 @@ if (loading) {
             <Route path="/sportspersons/:id/edit" element={<EditSportsperson />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/compare" element={<ComparePlayers />} />
+            <Route path="/gallery" element={<PlayerGallery />} />
           </Routes>
         </main>
 
