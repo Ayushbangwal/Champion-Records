@@ -1,3 +1,4 @@
+import RandomPlayer from "./pages/RandomPlayer";
 import PlayerGallery from "./pages/PlayerGallery";
 import ComparePlayers from "./pages/ComparePlayers";
 import SplashScreen from "./components/SplashScreen";
@@ -64,6 +65,7 @@ if (loading) {
             <Route path="/search" element={<SearchResults />} />
             <Route path="/compare" element={<ComparePlayers />} />
             <Route path="/gallery" element={<PlayerGallery />} />
+            <Route path="/random-player" element={<RandomPlayer />} />
           </Routes>
         </main>
 
