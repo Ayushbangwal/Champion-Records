@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Search, Menu, X, Trophy, Users, Home, PlusCircle } from 'lucide-react';
+import { Search, Menu, X, Trophy, Users, Home } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,16 +49,7 @@ const Navbar = () => {
     <Users className="inline h-4 w-4 mr-1" />
     Sportspersons
   </Link>
-
-  <Link
-    to="/sportspersons/add"
-    className={`nav-link ${isActive('/sportspersons/add') ? 'active' : ''}`}
-  >
-    <PlusCircle className="inline h-4 w-4 mr-1" />
-    Add Sportsperson
-  </Link>
-
-  <Link
+ <Link
     to="/compare"
     className={`nav-link ${isActive('/compare') ? 'active' : ''}`}
   >
@@ -125,15 +116,6 @@ const Navbar = () => {
       >
         <Users className="inline h-4 w-4 mr-1" />
         Sportspersons
-      </Link>
-
-      <Link
-        to="/sportspersons/add"
-        className={`nav-link ${isActive('/sportspersons/add') ? 'active' : ''}`}
-        onClick={() => setIsMenuOpen(false)}
-      >
-        <PlusCircle className="inline h-4 w-4 mr-1" />
-        Add Sportsperson
       </Link>
 
       <Link
