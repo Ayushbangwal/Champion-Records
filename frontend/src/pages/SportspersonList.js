@@ -1,5 +1,4 @@
 import Loader from "../components/Loader";
-// import SplashScreen from "../components/SplashScreen";
 import React, { useState } from 'react';import { useQuery } from 'react-query';
 import { Loader2, Users, Filter, Search } from 'lucide-react';
 import SportspersonCard from '../components/SportspersonCard';
