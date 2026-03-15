@@ -28,7 +28,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <Trophy className="h-8 w-8 text-orange-500" />
-            <span className="text-xl font-bold text-white">SportsStats</span>
+
+          <h1 className="text-xl font-bold text-white">
+          <span className="text-red-500">SPORTS</span> STATS
+          </h1>
           </Link>
 
           {/* Desktop Navigation */}
