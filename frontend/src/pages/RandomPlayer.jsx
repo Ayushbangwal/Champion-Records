@@ -60,7 +60,8 @@ const RandomPlayer = () => {
     </h2>
 
     <p className="text-gray-600 text-lg">
-      Sport: {player.sport}
+        Nationality: {player.nationality}
+
     </p>
 
   </div>
