@@ -1,7 +1,6 @@
 import RandomPlayer from "./pages/RandomPlayer";
 import PlayerGallery from "./pages/PlayerGallery";
 import ComparePlayers from "./pages/ComparePlayers";
-import SplashScreen from "./components/SplashScreen";
 import { useState, useEffect } from "react";
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -20,13 +19,6 @@ import SearchResults from './pages/SearchResults';
 const queryClient = new QueryClient();
 
 function App() {
- 
-  const [loading, setLoading] = useState(true);
-useEffect(() => {
-  setTimeout(() => {
-    setLoading(false);
-  }, 3000);
-}, []);
 const [darkMode, setDarkMode] = useState(() => {
   const savedTheme = localStorage.getItem("theme");
   return savedTheme === "dark";
@@ -38,10 +30,6 @@ const toggleDarkMode = () => {
 useEffect(() => {
   localStorage.setItem("theme", darkMode ? "dark" : "light");
 }, [darkMode]);
-
-if (loading) {
-  return <SplashScreen />;
-}
   return (
     <QueryClientProvider client={queryClient}>
   <Router>
