@@ -50,7 +50,7 @@ if (loading) {
 
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-white">
 
-        <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+        <Navbar />
         
    
           
