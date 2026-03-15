@@ -1,5 +1,5 @@
-import Loader from "../components/Loader";
-import React, { useState } from 'react';import { useQuery } from 'react-query';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import { Loader2, Users, Filter, Search } from 'lucide-react';
 import SportspersonCard from '../components/SportspersonCard';
 import { sportspersonAPI } from '../services/api';
