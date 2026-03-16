@@ -22,9 +22,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+
+      <nav className="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+      <div className="w-full px-6">
+      <div className="flex justify-between items-center h-16 max-w-7xl mx-auto">
+        
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <Trophy className="h-8 w-8 text-orange-500" />

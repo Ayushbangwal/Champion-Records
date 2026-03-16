@@ -4,22 +4,24 @@ import { Search, Trophy, Users, PlusCircle, TrendingUp, Star } from "lucide-reac
 
 const Home = () => {
   return (
-    <div className="space-y-20 bg-black text-white">
+    <div className="bg-black text-white">
+      
 
       {/* HERO SECTION */}
-
-      <section className="min-h-screen flex items-center justify-center text-center px-6 bg-gradient-to-br from-black via-gray-900 to-red-900">
-
-        <div>
+ 
+ <section className="w-full min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-[#0b0f1a] via-[#0d1b2a] to-[#7a1010]">
+          <div className="max-w-6xl mx-auto px-6">
 
           <p className="text-red-400 border border-red-500 inline-block px-4 py-1 rounded-full text-sm mb-6">
             WELCOME TO THE ULTIMATE SPORTS DATABASE
           </p>
 
-          <h1 className="text-6xl font-bold leading-tight">
+           <h1 className="text-6xl font-extrabold tracking-tight">
             SPORTS PLAYER
-            <span className="block text-red-500">STATS & RECORDS</span>
-          </h1>
+            <span className="block text-red-500 drop-shadow-lg">
+            STATS & RECORDS
+            </span>
+           </h1>
 
           <p className="text-gray-300 mt-6 max-w-2xl mx-auto text-lg">
             Explore comprehensive statistics, achievements, and records of
@@ -30,7 +32,7 @@ const Home = () => {
 
             <Link
               to="/sportspersons"
-              className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-lg font-semibold transition"
+              className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-xl shadow-lg shadow-red-500/30 transition"
             >
               EXPLORE PLAYERS
             </Link>
@@ -49,18 +51,18 @@ const Home = () => {
       </section>
 
       {/* FEATURES */}
+      <section className="px-24">
+        <div className="max-w-7xl mx-auto px-6">
 
-      <section className="px-10">
-
-        <h2 className="text-4xl font-bold text-center mb-12">
+        <h2 className="text-4xl font-bold text-center mb-16 tracking-wide">
           Platform Features
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
 
-          <div className="bg-gray-900 border border-red-900 p-8 rounded-xl text-center hover:scale-105 transition">
+          <div className="bg-[#0f172a] border border-red-900/40 rounded-2xl p-10 flex flex-col items-center text-center hover:-translate-y-2 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/10 transition duration-300">
 
-            <div className="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">  
               <Users className="h-8 w-8 text-red-400" />
             </div>
 
@@ -72,13 +74,11 @@ const Home = () => {
               Detailed sportsperson profiles with personal information,
               career statistics, achievements and records.
             </p>
-
           </div>
 
+          <div className="bg-[#0f172a] border border-red-900/40 rounded-2xl p-10 flex flex-col items-center text-center hover:-translate-y-2 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/10 transition duration-300">
 
-          <div className="bg-gray-900 border border-red-900 p-8 rounded-xl text-center hover:scale-105 transition">
-
-            <div className="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">  
               <TrendingUp className="h-8 w-8 text-red-400" />
             </div>
 
@@ -90,13 +90,11 @@ const Home = () => {
               Track performance metrics, analyze trends and compare
               statistics between players.
             </p>
-
           </div>
 
+          <div className="bg-[#0f172a] border border-red-900/40 rounded-2xl p-10 flex flex-col items-center text-center hover:-translate-y-2 hover:border-red-500 hover:shadow-xl hover:shadow-red-500/10 transition duration-300">
 
-          <div className="bg-gray-900 border border-red-900 p-8 rounded-xl text-center hover:scale-105 transition">
-
-            <div className="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-14 h-14 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">  
               <Trophy className="h-8 w-8 text-red-400" />
             </div>
 
@@ -112,25 +110,24 @@ const Home = () => {
           </div>
 
         </div>
+        </div>
 
       </section>
 
-
       {/* QUICK ACTIONS */}
-
-      <section className="px-10">
-
+      <section className="py-24">
+      <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12">
           Quick Actions
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
 
           <Link
             to="/sportspersons"
-            className="bg-gray-900 border border-gray-800 p-6 rounded-xl text-center hover:border-red-500 hover:scale-105 transition"
+            className=" bg-[#111827] rounded-xl p-10 border border-gray-800 hover:border-red-500 hover:bg-[#141c2f] transition"
           >
-            <Users className="h-12 w-12 text-red-500 mx-auto mb-3" />
+            <Users className="h-10 w-10 text-red-400 mx-auto mb-3" />
             <h3 className="font-semibold mb-1">View All Players</h3>
             <p className="text-sm text-gray-400">
               Browse the complete sports database
@@ -140,9 +137,9 @@ const Home = () => {
 
           <Link
             to="/sportspersons/add"
-            className="bg-gray-900 border border-gray-800 p-6 rounded-xl text-center hover:border-red-500 hover:scale-105 transition"
+            className="bg-[#111827] rounded-xl p-10 border border-gray-800 hover:border-red-500 hover:bg-[#141c2f] transition"
           >
-            <PlusCircle className="h-12 w-12 text-red-500 mx-auto mb-3" />
+            <PlusCircle className="h-10 w-10 text-red-400 mx-auto mb-3" />
             <h3 className="font-semibold mb-1">Add Player</h3>
             <p className="text-sm text-gray-400">
               Create a new sportsperson profile
@@ -150,8 +147,8 @@ const Home = () => {
           </Link>
 
 
-          <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl text-center hover:border-red-500 hover:scale-105 transition cursor-pointer">
-            <Search className="h-12 w-12 text-red-500 mx-auto mb-3" />
+          <div className="bg-[#111827] border border-gray-800 p-10 rounded-xl text-center hover:border-red-500 hover:bg-[#141c2f] transition cursor-pointer">
+            <Search className="h-10 w-10 text-red-400 mx-auto mb-3" />
             <h3 className="font-semibold mb-1">Search Players</h3>
             <p className="text-sm text-gray-400">
               Find specific sportspersons
@@ -159,8 +156,8 @@ const Home = () => {
           </div>
 
 
-          <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl text-center hover:border-red-500 hover:scale-105 transition">
-            <Star className="h-12 w-12 text-red-500 mx-auto mb-3" />
+          <div className="bg-[#111827] border border-gray-800 p-10 rounded-xl text-center hover:border-red-500 hover:bg-[#141c2f] transition">
+            <Star className="h-10 w-10 text-red-400 mx-auto mb-3" />
             <h3 className="font-semibold mb-1">Top Performers</h3>
             <p className="text-sm text-gray-400">
               Discover the best athletes
@@ -168,36 +165,39 @@ const Home = () => {
           </div>
 
         </div>
+        </div>
 
       </section>
 
 
       {/* PLATFORM STATS */}
 
-      <section className="bg-gradient-to-r from-black via-red-950 to-black py-20">
-
-        <h2 className="text-4xl font-bold text-center mb-12">
+      <section className="bg-gradient-to-r from-black via-red-950 to-black py-24">
+        <h2 className="text-4xl font-bold text-center mb-16 tracking-wide">
           Platform Statistics
         </h2>
 
-        <div className="grid md:grid-cols-4 gap-10 text-center">
 
-          <div>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10 text-center">
+
+
+
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
             <div className="text-4xl font-bold text-red-500">50+</div>
             <p className="text-gray-400">Sportspersons</p>
           </div>
 
-          <div>
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
             <div className="text-4xl font-bold text-red-500">7</div>
             <p className="text-gray-400">Sport Categories</p>
           </div>
 
-          <div>
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
             <div className="text-4xl font-bold text-red-500">100+</div>
             <p className="text-gray-400">Achievements</p>
           </div>
 
-          <div>
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
             <div className="text-4xl font-bold text-red-500">25+</div>
             <p className="text-gray-400">Records</p>
           </div>
