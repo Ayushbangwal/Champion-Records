@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const RandomPlayer = () => {
 
   const [players, setPlayers] = useState([]);
   const [player, setPlayer] = useState(null);
 
-  useEffect(() => {
+  const navigate = useNavigate(); // ✅ IMPORTANT
 
+  useEffect(() => {
     const fetchPlayers = async () => {
       try {
         const res = await api.get("/sportspersons");
@@ -18,18 +20,13 @@ const RandomPlayer = () => {
     };
 
     fetchPlayers();
-
   }, []);
 
   const getRandomPlayer = () => {
-
     if (players.length === 0) return;
 
     const randomIndex = Math.floor(Math.random() * players.length);
-    console.log(players[randomIndex]);
-
     setPlayer(players[randomIndex]);
-
   };
 
   return (
@@ -45,30 +42,29 @@ const RandomPlayer = () => {
       >
         Get Random Player
       </button>
-    
-     {player && (
-  <div className="bg-white p-5 rounded-xl shadow-lg max-w-sm mx-auto">
 
-    <img
-      src={player.image}
-      alt={`${player.first_name} ${player.last_name}`}
-      className="w-full h-64 object-contain bg-gray-100 rounded-lg"
-    />
+      {player && (
+        <div
+          onClick={() => navigate(`/sportspersons/${player.id}`)}
+          className="bg-white p-5 rounded-xl shadow-lg max-w-sm mx-auto cursor-pointer hover:shadow-xl transition duration-300"
+        >
 
-    <h2 className="mt-4 text-2xl font-bold text-gray-800">
-      {player.first_name} {player.last_name}
-    </h2>
+          <img
+            src={player.image}
+            alt={`${player.first_name} ${player.last_name}`}
+            className="w-full h-64 object-contain bg-gray-100 rounded-lg hover:scale-105 transition duration-300"
+          />
 
-    <p className="text-gray-600 text-lg">
-        Nationality: {player.nationality}
+          <h2 className="mt-4 text-2xl font-bold text-gray-800">
+            {player.first_name} {player.last_name}
+          </h2>
 
-    </p>
+          <p className="text-gray-600 text-lg">
+            Nationality: {player.nationality}
+          </p>
 
-  </div>
-)}
-   
-
-      
+        </div>
+      )}
 
     </div>
   );
