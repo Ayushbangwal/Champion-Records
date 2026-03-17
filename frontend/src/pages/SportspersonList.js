@@ -21,9 +21,9 @@ const SportspersonList = () => {
   // Loading
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-[400px]">
+      <div className="flex justify-center items-center min-h-[400px] bg-gradient-to-r from-black via-red-950/30 to-black text-white">
         <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto mb-4" />
-        <p className="text-gray-600">Loading sportspersons...</p>
+        <p className="text-gray-400">Loading sportspersons...</p>
       </div>
     );
   }
@@ -31,8 +31,8 @@ const SportspersonList = () => {
   // Error
   if (error) {
     return (
-      <div className="text-center py-12">
-        <p className="text-red-600 font-semibold">Error loading sportspersons</p>
+      <div className="text-center py-12 bg-gradient-to-r from-black via-red-950/30 to-black text-white">
+        <p className="text-red-500 font-semibold">Error loading sportspersons</p>
         <button onClick={() => refetch()} className="btn-primary mt-4">
           Try Again
         </button>
@@ -54,16 +54,16 @@ const SportspersonList = () => {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-gradient-to-r from-black via-red-950/30 to-black text-white min-h-screen p-6">
 
       {/* HEADER */}
       <div className="flex justify-between items-center">
         <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center">
+            <h1 className="text-3xl font-bold text-white flex items-center">
             <Users className="h-8 w-8 mr-3 text-blue-600" />
             All Sportspersons
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-400 mt-2">
             Browse and manage sportsperson profiles
           </p>
         </div>
@@ -76,14 +76,14 @@ const SportspersonList = () => {
 
       {/* SEARCH */}
       <div className="relative mb-4">
-        <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+        <Search className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
 
         <input
           type="text"
           placeholder="Search sportsperson..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border border-gray-300 pl-10 pr-4 py-3 w-full rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="bg-[#111827] text-white border border-gray-800 pl-10 pr-4 py-3 w-full rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none"
         />
       </div>
 
@@ -94,9 +94,9 @@ const SportspersonList = () => {
        
           className={`px-4 py-2 rounded-lg font-medium transition
 ${sportFilter === "all"
-? "bg-blue-600 text-white"
-: "bg-gray-300 text-gray-700 hover:bg-gray-400"}
-`}
+  ? "bg-red-500 text-white"
+  : "bg-[#111827] text-gray-300 border border-gray-800 hover:border-red-500"}
+  `}
           
           >
           All

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Search, Trophy, Users, PlusCircle, TrendingUp, Star } from "lucide-react";
+import PopularSports from "../components/PopularSports";
 
 const Home = () => {
   return (
@@ -51,7 +52,8 @@ const Home = () => {
       </section>
 
       {/* FEATURES */}
-      <section className="px-24">
+      
+      <section className="bg-gradient-to-r from-black via-red-900/50 to-black py-24">
         <div className="max-w-7xl mx-auto px-6">
 
         <h2 className="text-4xl font-bold text-center mb-16 tracking-wide">
@@ -115,7 +117,7 @@ const Home = () => {
       </section>
 
       {/* QUICK ACTIONS */}
-      <section className="py-24">
+      <section className="bg-gradient-to-r from-black via-red-900/50 to-black py-24">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12">
           Quick Actions
@@ -171,8 +173,7 @@ const Home = () => {
 
 
       {/* PLATFORM STATS */}
-
-      <section className="bg-gradient-to-r from-black via-red-950 to-black py-24">
+      <section className="bg-gradient-to-r from-black via-red-900/50 to-black py-24">
         <h2 className="text-4xl font-bold text-center mb-16 tracking-wide">
           Platform Statistics
         </h2>
@@ -182,22 +183,22 @@ const Home = () => {
 
 
 
-          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/10 transition">
             <div className="text-4xl font-bold text-red-500">50+</div>
             <p className="text-gray-400">Sportspersons</p>
           </div>
 
-          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/10 transition">
             <div className="text-4xl font-bold text-red-500">7</div>
             <p className="text-gray-400">Sport Categories</p>
           </div>
 
-          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/10 transition">
             <div className="text-4xl font-bold text-red-500">100+</div>
             <p className="text-gray-400">Achievements</p>
           </div>
 
-          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 transition">
+          <div className="bg-[#0f172a] border border-red-900/30 rounded-xl p-10 hover:border-red-500 hover:shadow-lg hover:shadow-red-500/10 transition">
             <div className="text-4xl font-bold text-red-500">25+</div>
             <p className="text-gray-400">Records</p>
           </div>
@@ -206,28 +207,53 @@ const Home = () => {
 
       </section>
 
+<div className="my-20">
+  <PopularSports />
+</div>
 
-      {/* CTA */}
 
-      <section className="text-center py-16">
 
-        <h2 className="text-4xl font-bold mb-4">
-          Ready to Explore the Database?
-        </h2>
 
-        <p className="text-gray-400 mb-8 text-lg">
-          Discover legendary athletes and their career achievements.
-        </p>
+      {/* SPLIT CTA SECTION */}
+<section className="grid md:grid-cols-2 border-t border-gray-800">
 
-        <Link
-          to="/sportspersons"
-          className="bg-red-500 hover:bg-red-600 px-10 py-4 rounded-lg font-semibold text-lg transition"
-        >
-          Explore Now
-        </Link>
+  {/* LEFT */}
+  <div className="bg-gradient-to-r from-[#0f172a] to-[#7f1d1d] text-center py-20 px-6 border-r border-gray-800">
+    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+      Ready to Explore the Database?
+    </h2>
 
-      </section>
+    <p className="text-gray-300 mb-8">
+      Discover legendary athletes and their career achievements.
+    </p>
 
+    <Link
+      to="/sportspersons"
+      className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-lg font-semibold transition"
+    >
+      Explore Now
+    </Link>
+  </div>
+
+  {/* RIGHT */}
+  <div className="bg-gradient-to-r from-[#7f1d1d] to-[#ef4444] text-center py-20 px-6">
+    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+      Ready to Compare Players?
+    </h2>
+
+    <p className="text-red-100 mb-8">
+      Use our advanced comparison tool to analyze stats side by side
+    </p>
+
+    <Link
+      to="/compare"
+      className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+    >
+      Compare Players
+    </Link>
+  </div>
+
+</section>
     </div>
   );
 };
