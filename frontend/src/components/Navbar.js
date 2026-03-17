@@ -1,19 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Search, Menu, X, Trophy, Users, Home, Image } from 'lucide-react';
+import { sportspersonAPI } from "../services/api";
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [query, setQuery] = useState("");
+const [results, setResults] = useState([]);
+const [showDropdown, setShowDropdown] = useState(false);
+
+useEffect(() => {
+  const timeout = setTimeout(async () => {
+      if (query.trim().length < 1) {
+  setResults([]);
+
+  return;
+}
+ try {
+  const res = await sportspersonAPI.search(query);
+  //console.log("API RESPONSE:", res);
+  //console.log("DATA:", res.data);
+  // console.log("PLAYERS:", res.data.data);
+const players = res?.data?.data || [];
+
+const filtered = players.filter((player) => {
+  const name = `${player.first_name || ""} ${player.last_name || ""}`.toLowerCase();
+  const sport = player.sport_category?.name?.toLowerCase() || "";
+
+  return (
+    name.includes(query.toLowerCase()) ||
+    sport.includes(query.toLowerCase())
+  );
+});
+
+setResults(filtered);
+ } catch(err){
+  console.error("Search API eror:", err);
+ }
+}, 300);
+
+  return () => clearTimeout(timeout);
+}, [query]);
+
+useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (!e.target.closest(".search-container")) {
+      setShowDropdown(false);
+    }
+  };
+
+  window.addEventListener("click", handleClickOutside);
+
+  return () => {
+    window.removeEventListener("click", handleClickOutside);
+  };
+}, []);
+
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery('');
-      setIsMenuOpen(false);
+    if (query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+      setQuery('');
+      setShowDropdown(false);
     }
   };
 
@@ -79,16 +131,60 @@ const Navbar = () => {
   </Link>
 
 </div>
-<form onSubmit={handleSearch} className="hidden md:flex relative ml-4">
+ 
+  <div className="relative ml-4 hidden md:flex flex-col search-container">
+  <form onSubmit={handleSearch} className="relative">
   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
   <input
     type="text"
     placeholder="Search sportspersons..."
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
+    value={query}
+    onClick={(e) => e.stopPropagation()}
+onChange={(e) => {
+  setQuery(e.target.value);
+  setShowDropdown(true);
+}}
+  
     className="search-input w-64"
   />
 </form>
+    {showDropdown && query.trim().length > 0 && (
+  <div
+        className="absolute top-full left-0 mt-2 w-72 bg-slate-800 text-white 
+border border-gray-600 rounded-lg shadow-2xl z-50 p-2 
+max-h-60 overflow-y-auto">
+
+    {results.length > 0 ? (
+      results.slice(0, 5).map((player) => (
+        <div
+          key={player.id}
+          className="p-2 hover:bg-slate-700 cursor-pointer flex flex-col transition rounded"
+          onClick={() => {
+            navigate(`/sportspersons/${player.id}`);
+            setShowDropdown(false);
+            setQuery("");
+          }}
+        >
+         <span className="text-white font-semibold">
+  {`${player.first_name || ""} ${player.last_name || ""}`}
+</span>
+         <span className="text-xs text-gray-400">
+  {player.sport_category?.name || "N/A"}
+</span>
+
+        </div>
+      ))
+    ) : (
+      query && (
+        <div className="p-2 text-gray-400">
+          No results found
+        </div>
+      )
+    )}
+
+  </div>
+)}
+</div>
 
           {/* Mobile menu button */}
           <button
@@ -156,8 +252,12 @@ const Navbar = () => {
         <input
           type="text"
           placeholder="Search sportspersons..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={query}
+          onClick={(e) => e.stopPropagation()}
+onChange={(e) => {
+  setQuery(e.target.value);
+  setShowDropdown(true);
+}}
           className="search-input"
         />
       </form>
