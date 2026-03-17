@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Search, Menu, X, Trophy, Users, Home } from 'lucide-react';
+import { Search, Menu, X, Trophy, Users, Home, Image } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,7 +66,7 @@ const Navbar = () => {
     to="/gallery"
     className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}
   >
-    <Trophy className="inline h-4 w-4 mr-1" />
+    <Image className="inline h-4 w-4 mr-1" />
     Gallery
   </Link>
 
@@ -137,7 +137,7 @@ const Navbar = () => {
         className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}
         onClick={() => setIsMenuOpen(false)}
       >
-        <Trophy className="inline h-4 w-4 mr-1" />
+        <Image className="inline h-4 w-4 mr-1" />
         Gallery
       </Link>
 
