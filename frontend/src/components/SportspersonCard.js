@@ -26,7 +26,7 @@ const SportspersonCard = ({ sportsperson }) => {
   };
 
   return (
-    <div className="card hover:shadow-lg transition-shadow duration-300">
+     <div className="bg-[#111827] hover:bg-[#1f2937] rounded-xl p-5 shadow-md transition duration-300">
       <div className="flex items-start space-x-4">
         {/* Profile Image */}
         <div className="flex-shrink-0">
@@ -50,12 +50,12 @@ const SportspersonCard = ({ sportsperson }) => {
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-semibold text-white hover:text-blue-400 transition-colors">
                 <Link to={`/sportspersons/${sportsperson.id}`}>
                   {sportsperson.first_name} {sportsperson.last_name}
                 </Link>
               </h3>
-              <div className="flex items-center text-sm text-gray-500 mt-1">
+                <div className="flex items-center text-sm text-gray-400 mt-1">
                 <Trophy className="h-4 w-4 mr-1" />
                 {sportsperson.sport_categories?.name || 'Unknown Sport'}
               </div>
@@ -64,22 +64,24 @@ const SportspersonCard = ({ sportsperson }) => {
 
           {/* Personal Details */}
           <div className="mt-3 space-y-1">
-            <div className="flex items-center text-sm text-gray-600">
-              <Calendar className="h-4 w-4 mr-2 text-gray-400" />
+            
+              <div className="flex items-center text-sm text-gray-300">
+              <Calendar className="h-4 w-4 mr-2 text-gray-500" />
               <span>Age: {calculateAge(sportsperson.date_of_birth)}</span>
               <span className="mx-2">•</span>
               <span>Born: {formatDate(sportsperson.date_of_birth)}</span>
             </div>
             
             {sportsperson.nationality && (
-              <div className="flex items-center text-sm text-gray-600">
+              
+                <div className="flex items-center text-sm text-gray-300">
                 <MapPin className="h-4 w-4 mr-2 text-gray-400" />
                 <span>{sportsperson.nationality}</span>
               </div>
             )}
 
             {sportsperson.bio && (
-              <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                <p className="text-sm text-gray-300 mt-2 line-clamp-2 leading-relaxed">
                 {sportsperson.bio}
               </p>
             )}
@@ -89,25 +91,25 @@ const SportspersonCard = ({ sportsperson }) => {
           <div className="mt-4 flex items-center space-x-4">
             <div className="flex items-center text-sm">
               <Target className="h-4 w-4 mr-1 text-blue-500" />
-              <span className="text-gray-600">Career Stats</span>
+              <span className="text-blue-400">Career Stats</span>
             </div>
             <div className="flex items-center text-sm">
               <Award className="h-4 w-4 mr-1 text-yellow-500" />
-              <span className="text-gray-600">Achievements</span>
+              <span className="text-yellow-400 font-medium"> Achievements</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+      <div className="mt-4 pt-4 border-t border-gray-700 flex justify-between items-center">
         <Link
           to={`/sportspersons/${sportsperson.id}`}
-          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+          className="text-blue-600 hover:text-blue-300 text-sm font-medium"
         >
           View Details →
         </Link>
-        <div className="text-xs text-gray-400">
+        <div className="text-xs text-gray-500">
           ID: {sportsperson.id}
         </div>
       </div>
