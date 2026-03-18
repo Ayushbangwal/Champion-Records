@@ -35,7 +35,8 @@ const SportspersonCard = ({ sportsperson }) => {
   src={sportsperson.image}
   alt={`${sportsperson.first_name} ${sportsperson.last_name}`}
   loading="lazy"
-  className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
+  className="w-24 h-24 rounded-full object-cover object-[center_top] border-2 
+  border-gray-700 transition duration-300 hover:scale-105"
 />
           ) : (
             <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
