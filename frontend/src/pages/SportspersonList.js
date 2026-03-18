@@ -8,8 +8,7 @@ const SportspersonList = () => {
 
   const [search, setSearch] = useState("");
   const [sportFilter, setSportFilter] = useState("all");
-
-  const {
+    const {
     data: sportspersons,
     isLoading,
     error,
@@ -17,7 +16,14 @@ const SportspersonList = () => {
   } = useQuery("sportspersons", () => sportspersonAPI.getAll(), {
     select: (response) => response.data.data
   });
-
+  
+  const sports = [
+  ...new Set(
+    (sportspersons || []).map(
+      (p) => p.sport_categories?.name.toLowerCase())
+      .filter(Boolean)
+  ),
+];
   // Loading
   if (isLoading) {
     return (
@@ -103,54 +109,20 @@ ${sportFilter === "all"
         </button>
 
         
-        <button
-onClick={() => setSportFilter("cricket")}
-className={`px-4 py-2 rounded-lg font-medium transition
-${sportFilter === "cricket"
-? "bg-blue-600 text-white"
-: "bg-gray-300 text-gray-700 hover:bg-gray-400"}
-`}
->
-Cricket
-</button>
-
-     
-        <button
-onClick={() => setSportFilter("football")}
-className={`px-4 py-2 rounded-lg font-medium transition
-${sportFilter === "football"? "bg-blue-600 text-white": "bg-gray-300 text-gray-700 hover:bg-gray-400"}
-`}
->
-Football
-</button>
-
-        
-        <button
-onClick={() => setSportFilter("tennis")}
-className={`px-4 py-2 rounded-lg font-medium transition
-${sportFilter === "tennis"? "bg-blue-600 text-white": "bg-gray-300 text-gray-700 hover:bg-gray-400"}
-`}
->
-Tennis
-</button>
-
-        <button
-onClick={() => setSportFilter("basketball")}
-className={`px-4 py-2 rounded-lg font-medium transition
-${sportFilter === "basketball"? "bg-blue-600 text-white": "bg-gray-300 text-gray-700 hover:bg-gray-400"}
-`}
->
-Basketball
-</button>
-
-        <button
-onClick={() => setSportFilter("athletics")}
-className={`px-4 py-2 rounded-lg font-medium transition
-${sportFilter === "athletics"? "bg-blue-600 text-white": "bg-gray-300 text-gray-700 hover:bg-gray-400"}
-`}
->
-Athletics
-</button>
+        {sports.map((sport, index) => (
+  <button
+    key={index}
+    onClick={() => setSportFilter(sport)}
+    className={`px-4 py-2 rounded-lg font-medium transition
+    ${
+      sportFilter === sport
+        ? "bg-red-500 text-white"
+        : "bg-[#111827] text-gray-300 border border-gray-800 hover:border-red-500"
+    }`}
+  >
+    {sport.toUpperCase()}
+  </button>
+))}
 
       </div>
 
