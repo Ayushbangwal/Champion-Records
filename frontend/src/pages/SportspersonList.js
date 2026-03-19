@@ -95,7 +95,7 @@ return matchesSport && matchesNationality && matchesSearch;
   </button>
 
   {showFilter && (
-    <div className="absolute right-0 mt-2 w-48 bg-slate-800 text-white rounded-lg shadow-lg p-3 z-50">
+      <div className="absolute right-0 mt-2 w-56 max-h-60 overflow-y-auto bg-slate-800 text-white rounded-lg shadow-lg p-3 z-50">
       
       <p className="text-sm text-gray-400 mb-2">Nationality</p>
 
