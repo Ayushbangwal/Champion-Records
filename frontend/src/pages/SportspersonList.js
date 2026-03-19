@@ -10,6 +10,7 @@ const SportspersonList = () => {
   const [sportFilter, setSportFilter] = useState("all");
   const [selectedNationality, setSelectedNationality] = useState("");
 const [showFilter, setShowFilter] = useState(false);
+const [countrySearch, setCountrySearch] = useState("");
     const {
     data: sportspersons,
     isLoading,
@@ -96,18 +97,32 @@ return matchesSport && matchesNationality && matchesSearch;
 
   {showFilter && (
       <div className="absolute right-0 mt-2 w-56 max-h-60 overflow-y-auto bg-slate-800 text-white rounded-lg shadow-lg p-3 z-50">
-      
       <p className="text-sm text-gray-400 mb-2">Nationality</p>
+
+<input
+  type="text"
+  placeholder="Search country..."
+  value={countrySearch}
+  onChange={(e) => setCountrySearch(e.target.value)}
+  className="w-full mb-2 px-2 py-1 rounded bg-slate-700 text-white text-sm outline-none"
+/>
+      
 
       {(sportspersons || []).map((p) => p.nationality)
         .filter((v, i, a) => v && a.indexOf(v) === i)
-        .map((country) => (
-          <div
-            key={country}
-            className="p-2 hover:bg-slate-700 cursor-pointer rounded"
+        .filter((country) => country.toLowerCase().includes(countrySearch.toLowerCase())
+      )
+      .map((country) => (
+          <div key={country}
+            className={`p-2 rounded cursor-pointer ${
+  selectedNationality === country
+    ? "bg-blue-500 text-white"
+    : "hover:bg-slate-700"
+}`}
             onClick={() => {
               setSelectedNationality(country);
               setShowFilter(false);
+              setCountrySearch("");
             }}
           >
             {country}
@@ -143,8 +158,28 @@ return matchesSport && matchesNationality && matchesSearch;
         />
       </div>
 
+
+      {/* SELECTED NATIONALITY CHIP */}
+{selectedNationality && (
+  <div className="flex items-center gap-2 mb-4">
+    <span 
+      className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm border border-blue-500">
+      {selectedNationality}
+    </span>
+
+    <button
+      onClick={() => setSelectedNationality("")}
+      className="text-red-400 text-sm"
+    >
+      ✕
+    </button>
+
+  </div>
+)}
+
       {/* SPORT FILTER BUTTONS */}
       <div className="flex gap-3 mb-6 flex-wrap">
+        
 
         <button onClick={() => setSportFilter("all")} 
        
