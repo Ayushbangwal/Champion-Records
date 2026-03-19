@@ -8,6 +8,8 @@ const SportspersonList = () => {
 
   const [search, setSearch] = useState("");
   const [sportFilter, setSportFilter] = useState("all");
+  const [selectedNationality, setSelectedNationality] = useState("");
+const [showFilter, setShowFilter] = useState(false);
     const {
     data: sportspersons,
     isLoading,
@@ -49,21 +51,29 @@ const SportspersonList = () => {
   // FILTER LOGIC
   const filteredSportspersons = (sportspersons || []).filter((sportsperson) => {
 
-    // show all
-    if (sportFilter === "all") return true;
+  const matchesSport =
+    sportFilter === "all" ||
+    (sportsperson.sport_categories &&
+      sportsperson.sport_categories.name.toLowerCase() === sportFilter);
 
-    return (
-      sportsperson.sport_categories &&
-      sportsperson.sport_categories.name.toLowerCase() === sportFilter
-    );
+  const matchesNationality =
+    !selectedNationality ||
+    sportsperson.nationality?.toLowerCase() === selectedNationality.toLowerCase();
+  const matchesSearch =
+  !search ||
+  `${sportsperson.first_name || ""} ${sportsperson.last_name || ""}`
+    .toLowerCase()
+    .includes(search.toLowerCase());
 
-  });
+return matchesSport && matchesNationality && matchesSearch;
+});
 
   return (
     <div className="space-y-6 bg-gradient-to-r from-black via-red-950/30 to-black text-white min-h-screen p-6">
 
       {/* HEADER */}
       <div className="flex justify-between items-center">
+
         <div>
             <h1 className="text-3xl font-bold text-white flex items-center">
             <Users className="h-8 w-8 mr-3 text-blue-600" />
@@ -74,10 +84,50 @@ const SportspersonList = () => {
           </p>
         </div>
 
-        <button className="btn-secondary flex items-center">
-          <Filter className="h-4 w-4 mr-2" />
-          Filter
-        </button>
+          <div className="relative">
+
+  <button 
+    onClick={() => setShowFilter(!showFilter)}
+    className="btn-secondary flex items-center"
+  >
+    <Filter className="h-4 w-4 mr-2" />
+    Filter
+  </button>
+
+  {showFilter && (
+    <div className="absolute right-0 mt-2 w-48 bg-slate-800 text-white rounded-lg shadow-lg p-3 z-50">
+      
+      <p className="text-sm text-gray-400 mb-2">Nationality</p>
+
+      {(sportspersons || []).map((p) => p.nationality)
+        .filter((v, i, a) => v && a.indexOf(v) === i)
+        .map((country) => (
+          <div
+            key={country}
+            className="p-2 hover:bg-slate-700 cursor-pointer rounded"
+            onClick={() => {
+              setSelectedNationality(country);
+              setShowFilter(false);
+            }}
+          >
+            {country}
+          </div>
+        ))}
+
+      <div
+        className="mt-2 text-red-400 cursor-pointer text-sm"
+        onClick={() => {
+          setSelectedNationality("");
+          setShowFilter(false);
+        }}
+      >
+        Reset
+      </div>
+
+    </div>
+  )}
+
+</div>
       </div>
 
       {/* SEARCH */}
