@@ -72,6 +72,22 @@ useEffect(() => {
   const isActive = (path) => {
     return location.pathname === path;
   };
+  const highlightText = (text, query) => {
+  if (!query) return text;
+
+  const regex = new RegExp(`(${query})`, "gi");
+  const parts = text.split(regex);
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+        <span key={index} className= "bg-blue-400/30 text-blue-300 px-1 rounded">
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
 
   return (
 
@@ -165,12 +181,15 @@ max-h-60 overflow-y-auto">
             setQuery("");
           }}
         >
-         <span className="text-white font-semibold">
-  {`${player.first_name || ""} ${player.last_name || ""}`.trim()}
+       <span className="text-white font-semibold">
+  {highlightText(
+    `${player.first_name || ""} ${player.last_name || ""}`.trim(),
+    query
+  )}
 </span>
-        {player.sport_category?.name && (
+       {player.sport_category?.name && (
   <span className="text-xs text-gray-400">
-    {player.sport_category.name}
+    {highlightText(player.sport_category.name, query)}
   </span>
 )}
 
