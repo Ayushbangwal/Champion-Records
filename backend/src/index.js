@@ -19,9 +19,9 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(helmet()); // Security headers
 app.use(compression()); // Compress responses
-app.use(morgan('combined')); // HTTP request logger
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev')); // HTTP request logger
 app.use(cors({
-  origin: "*",
+  origin: true,
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -116,13 +116,13 @@ app.use((err, req, res, next) => {
   res.status(500).json({
     success: false,
     message: 'Internal server error',
-    error: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
   });
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Sportsperson Stats API server running on port ${PORT}`);
+  console.log(`🚀 Server running at: http://localhost:${PORT}`);
   console.log(`📖 API documentation available at http://localhost:${PORT}/api`);
   console.log(`🏥 Health check available at http://localhost:${PORT}/health`);
 });

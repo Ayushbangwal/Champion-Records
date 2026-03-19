@@ -1,7 +1,7 @@
 import RandomPlayer from "./pages/RandomPlayer";
 import PlayerGallery from "./pages/PlayerGallery";
 import ComparePlayers from "./pages/ComparePlayers";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Toaster } from 'react-hot-toast';
 
@@ -19,11 +19,11 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-  <Router>
+  
 
    
 
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-[#0f172a]">
 
         <Navbar />
         
@@ -46,7 +46,7 @@ function App() {
 
     <Toaster position="top-right" />
 
-  </Router>
+  
 </QueryClientProvider>
   );
 }
