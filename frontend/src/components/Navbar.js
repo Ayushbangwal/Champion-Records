@@ -166,11 +166,13 @@ max-h-60 overflow-y-auto">
           }}
         >
          <span className="text-white font-semibold">
-  {`${player.first_name || ""} ${player.last_name || ""}`}
+  {`${player.first_name || ""} ${player.last_name || ""}`.trim()}
 </span>
-         <span className="text-xs text-gray-400">
-  {player.sport_category?.name || "N/A"}
-</span>
+        {player.sport_category?.name && (
+  <span className="text-xs text-gray-400">
+    {player.sport_category.name}
+  </span>
+)}
 
         </div>
       ))
