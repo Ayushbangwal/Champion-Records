@@ -1,165 +1,197 @@
+"use client";
 import { useState, useEffect } from "react";
 import api from "../services/api";
+import { motion } from "framer-motion";
+
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid
+} from "recharts";
 
 const ComparePlayers = () => {
-  const [player1, setPlayer1] = useState(null);
-  const [player2, setPlayer2] = useState(null);
+  const [player1, setPlayer1] = useState("");
+  const [player2, setPlayer2] = useState("");
   const [players, setPlayers] = useState([]);
-  const [id1, setId1] = useState("");
-  const [id2, setId2] = useState("");
+  const [selectedPlayer1, setSelectedPlayer1] = useState(null);
+  const [selectedPlayer2, setSelectedPlayer2] = useState(null);
 
-useEffect(() => {
-  const loadPlayers = async () => {
+  const chartData = [
+    {
+      name: "Matches",
+      player1: selectedPlayer1?.matches || 0,
+      player2: selectedPlayer2?.matches || 0,
+    },
+    {
+      name: "Age",
+      player1: selectedPlayer1?.age || 0,
+      player2: selectedPlayer2?.age || 0,
+    },
+  ];
+
+  useEffect(() => {
+    const loadPlayers = async () => {
+      try {
+        const res = await api.get("/sportspersons");
+        setPlayers(res?.data?.data || []);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    loadPlayers();
+  }, []);
+
+  const fetchPlayer = async (id, setPlayer) => {
     try {
-      const res = await api.get("/sportspersons");
-      setPlayers(res?.data?.data || []);
+      const res = await api.get(`/sportspersons/${id}`);
+      const p = res?.data?.data;
+
+      let image = "https://via.placeholder.com/150";
+
+      try {
+        const img = await fetch(
+          `https://en.wikipedia.org/api/rest_v1/page/summary/${p.first_name}_${p.last_name}`
+        ).then((r) => r.json());
+
+        image = img?.thumbnail?.source || image;
+      } catch {
+        console.log("Wiki image failed");
+      }
+
+      setPlayer({
+        ...p,
+        name: `${p.first_name} ${p.last_name}`,
+        image,
+      });
     } catch (err) {
-      console.error("Error loading players:", err);
+      console.log(err);
     }
   };
-   loadPlayers();
-}, []);
 
-const fetchPlayers = async () => {
-  try {
-    const res1 = await api.get(`/sportspersons/${id1}`);
-    const res2 = await api.get(`/sportspersons/${id2}`);
+  const handleCompare = () => {
+    if (player1 && player2) {
+      fetchPlayer(player1, setSelectedPlayer1);
+      fetchPlayer(player2, setSelectedPlayer2);
+    }
+  };
 
-    const p1 = res1?.data?.data || {};
-    const p2 = res2?.data?.data || {};
-    const img1 = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${p1.first_name}_${p1.last_name}`
-    ).then(r => r.json());
+  const totalMatches =
+    (selectedPlayer1?.matches || 0) +
+    (selectedPlayer2?.matches || 0);
 
-    const img2 = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${p2.first_name}_${p2.last_name}`
-    ).then(r => r.json());
+  return (
+    <div className="min-h-screen bg-black">
 
-    setPlayer1({
-      ...p1,
-      image_url: img1.thumbnail?.source
-    });
+      {/* HERO */}
+      <section className="py-20 text-center">
+        <h1 className="text-5xl font-bold text-white mb-4">
+          Compare Players
+        </h1>
 
-    setPlayer2({
-      ...p2,
-      image_url: img2.thumbnail?.source
-    });
+        <p className="text-gray-400 mb-10">
+          Select two players to compare
+        </p>
 
-  } catch (err) {
-    console.error("Error fetching players:", err);
-  }
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+          {/* Player 1 */}
+          <select
+            value={player1}
+            onChange={(e) => {
+              setPlayer1(e.target.value);
+              fetchPlayer(e.target.value, setSelectedPlayer1);
+            }}
+            className="p-3 bg-gray-800 text-white rounded"
+          >
+            <option value="">Select Player</option>
+            {players.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.first_name} {p.last_name}
+              </option>
+            ))}
+          </select>
+
+          {/* Player 2 */}
+          <select
+            value={player2}
+            onChange={(e) => {
+              setPlayer2(e.target.value);
+              fetchPlayer(e.target.value, setSelectedPlayer2);
+            }}
+            className="p-3 bg-gray-800 text-white rounded"
+          >
+            <option value="">Select Player</option>
+            {players.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.first_name} {p.last_name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button
+          onClick={handleCompare}
+          className="mt-6 bg-red-500 px-6 py-2 rounded text-white"
+        >
+          Compare
+        </button>
+      </section>
+
+      {/* RESULT */}
+      
+
+        <section className="max-w-6xl mx-auto px-4 py-12 text-white">
+
+          {/* VS */}
+          <div className="flex justify-center items-center gap-10 mb-12">
+
+            <div className="text-center">
+              <img src={selectedPlayer1?.image || "https://via.placeholder.com/150"} />
+              <p>{selectedPlayer1?.name}</p>
+            </div>
+
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="bg-red-500 px-4 py-2 rounded-full"
+            >
+              VS
+            </motion.div>
+
+            <div className="text-center">
+              <img src={selectedPlayer2?.image || "https://via.placeholder.com/150"} />
+              <p>{selectedPlayer2?.name}</p>
+            </div>
+
+          </div>
+
+          {/* CHART */}
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={chartData}>
+              <CartesianGrid stroke="#444" />
+              <XAxis dataKey="name" stroke="#ccc" />
+              <YAxis stroke="#ccc" />
+              <Tooltip />
+              <Bar dataKey="player1" fill="#ef4444" />
+              <Bar dataKey="player2" fill="#3b82f6" />
+            </BarChart>
+          </ResponsiveContainer>
+
+          {/* WINNER */}
+          <p className="text-center mt-6 text-green-400">
+            🏆 {(selectedPlayer1?.matches || 0) > (selectedPlayer2?.matches || 0)
+              ? selectedPlayer1?.name
+              : selectedPlayer2?.name}
+          </p>
+
+        </section>
+
+    </div>
+  );
 };
 
-   return (
-        <div className="max-w-5xl mx-auto p-8">
-
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">
-        Compare Player
-      </h1>
-       {/* Input Section */}
-        <div className="flex items-center gap-4 mb-8">
-<select
- value={id1}
- onChange={(e) => setId1(e.target.value)}
- className="border border-gray-300 rounded-lg px-4 py-2 w-56 bg-white text-black"
->
- <option value="">Select Player 1</option>
-
- {players?.map((p) => (
-  <option key={p.id} value={p.id}>
-    {p?.first_name || ""} {p?.last_name || ""}
-  </option>
-))}
-
-</select>
-
- <select
- value={id2}
- onChange={(e) => setId2(e.target.value)}
- className="border border-gray-300 rounded-lg px-4 py-2 w-56 bg-white text-black"
->
- <option value="">Select Player 2</option>
-
- {players?.map((p) => (
-  <option key={p.id} value={p.id}>
-    {p?.first_name || ""} {p?.last_name || ""}
-  </option>
-))}
-
-</select>
-    <button
-  onClick={fetchPlayers}
-  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow transition"
->
-  Compare
-</button>
-      </div>
-
-      {/* Comparison Section */}
-{player1 && player2 && (
-<div className="grid grid-cols-2 gap-10">
-
-{/* Player 1 Card */}
-    <div className="bg-slate-800 p-6 rounded-xl shadow-lg text-center">
-
-<img
-src={player1?.image_url || "https://via.placeholder.com/150"}
-alt={player1.first_name}
-className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
-/>
-
-<h2 className="text-xl font-bold text-white text-center mb-2">
-{player1?.first_name || ""} {player1?.last_name || ""}
-</h2>
-
-<p className="text-gray-300 text-center">
-<strong>DOB:</strong>{" "}
-{player1.date_of_birth &&
-new Date(player1.date_of_birth).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-})}
-</p>
-
-<p className="text-gray-300 text-center">
-<strong>Country:</strong> {player1.nationality}
-</p>
-
-</div>
-
-
-{/* Player 2 Card */}
-    <div className="bg-slate-800 p-6 rounded-xl shadow-lg text-center">
-
-<img
-src={player2.image_url || "https://via.placeholder.com/150"}
-alt={player2.first_name}
-className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
-/>
-
-<h2 className="text-xl font-bold text-white text-center mb-2">
-{player1?.first_name || ""} {player1?.last_name || ""}
-</h2>
-
-<p className="text-gray-300 text-center">
-    <strong>DOB:</strong>{" "}
-{player2.date_of_birth &&
-new Date(player2.date_of_birth).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-})}
-</p>
-
-<p className="text-gray-300 text-center">
-<strong>Country:</strong> {player2.nationality}
-</p>
-</div>
-</div>
-)}
-</div>
-
-);
-};
 export default ComparePlayers;

@@ -12,7 +12,9 @@ body {
   background-color: #0f172a;
   color: white;
 }
-
+body {
+  background-color: black;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
