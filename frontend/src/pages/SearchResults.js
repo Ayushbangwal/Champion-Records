@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { Search, Users, ArrowLeft } from 'lucide-react';
+import { Search, ArrowLeft } from 'lucide-react';
 import SportspersonCard from '../components/SportspersonCard';
 import { sportspersonAPI } from '../services/api';
 
