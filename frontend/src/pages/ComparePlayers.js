@@ -151,7 +151,8 @@ const ComparePlayers = () => {
               
               <img src={selectedPlayer1?.image || "https://via.placeholder.com/150"}
   alt={selectedPlayer1?.name || "Player 1"}
-   className="w-40 h-40 object-cover rounded-full mx-auto shadow-lg"
+   //className="w-40 h-40 object-contain rounded-full mx-auto shadow-lg bg-black"
+   className="w-40 h-40 object-contain rounded-full mx-auto bg-gray-900 p-2"
 />
               <p>{selectedPlayer1?.name}</p>
             </div>
@@ -167,7 +168,8 @@ const ComparePlayers = () => {
             <div className="text-center">
               <img src={selectedPlayer2?.image || "https://via.placeholder.com/150"}
   alt={selectedPlayer2?.name || "Player 2"}
-  className="w-40 h-40 object-cover rounded-full mx-auto shadow-lg"
+  //className="w-40 h-40 object-contain rounded-full mx-auto shadow-lg bg-black"
+  className="w-40 h-40 object-contain rounded-full mx-auto bg-gray-900 p-2"
 />
               <p>{selectedPlayer2?.name}</p>
             </div>
