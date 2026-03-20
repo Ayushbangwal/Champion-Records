@@ -78,9 +78,8 @@ const ComparePlayers = () => {
     }
   };
 
-  const totalMatches =
-    (selectedPlayer1?.matches || 0) +
-    (selectedPlayer2?.matches || 0);
+  
+    
 
   return (
     <div className="min-h-screen bg-black">
@@ -149,7 +148,11 @@ const ComparePlayers = () => {
           <div className="flex justify-center items-center gap-10 mb-12">
 
             <div className="text-center">
-              <img src={selectedPlayer1?.image || "https://via.placeholder.com/150"} />
+              
+              <img src={selectedPlayer1?.image || "https://via.placeholder.com/150"}
+  alt={selectedPlayer1?.name || "Player 1"}
+   className="w-40 h-40 object-cover rounded-full mx-auto shadow-lg"
+/>
               <p>{selectedPlayer1?.name}</p>
             </div>
 
@@ -162,7 +165,10 @@ const ComparePlayers = () => {
             </motion.div>
 
             <div className="text-center">
-              <img src={selectedPlayer2?.image || "https://via.placeholder.com/150"} />
+              <img src={selectedPlayer2?.image || "https://via.placeholder.com/150"}
+  alt={selectedPlayer2?.name || "Player 2"}
+  className="w-40 h-40 object-cover rounded-full mx-auto shadow-lg"
+/>
               <p>{selectedPlayer2?.name}</p>
             </div>
 
@@ -182,9 +188,11 @@ const ComparePlayers = () => {
 
           {/* WINNER */}
           <p className="text-center mt-6 text-green-400">
-            🏆 {(selectedPlayer1?.matches || 0) > (selectedPlayer2?.matches || 0)
-              ? selectedPlayer1?.name
-              : selectedPlayer2?.name}
+            🏆 {(selectedPlayer1?.matches || 0) === (selectedPlayer2?.matches || 0)
+  ? "It's a Tie 🤝"
+  : (selectedPlayer1?.matches || 0) > (selectedPlayer2?.matches || 0)
+  ? selectedPlayer1?.name
+  : selectedPlayer2?.name}
           </p>
 
         </section>
