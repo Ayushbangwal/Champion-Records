@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Search, Trophy, Users, PlusCircle, TrendingUp, Star } from "lucide-react";
+import { Search, Trophy, Users, TrendingUp} from "lucide-react";
 import PopularSports from "../components/PopularSports";
 
 const Home = () => {
@@ -122,8 +122,7 @@ const Home = () => {
         <h2 className="text-4xl font-bold text-center mb-12">
           Quick Actions
         </h2>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10 lg:gap-12">
 
           <Link
             to="/sportspersons"
@@ -137,32 +136,11 @@ const Home = () => {
           </Link>
 
 
-          <Link
-            to="/sportspersons/add"
-            className="bg-[#111827] rounded-xl p-10 border border-gray-800 hover:border-red-500 hover:bg-[#141c2f] transition"
-          >
-            <PlusCircle className="h-10 w-10 text-red-400 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Add Player</h3>
-            <p className="text-sm text-gray-400">
-              Create a new sportsperson profile
-            </p>
-          </Link>
-
-
           <div className="bg-[#111827] border border-gray-800 p-10 rounded-xl text-center hover:border-red-500 hover:bg-[#141c2f] transition cursor-pointer">
             <Search className="h-10 w-10 text-red-400 mx-auto mb-3" />
             <h3 className="font-semibold mb-1">Search Players</h3>
             <p className="text-sm text-gray-400">
               Find specific sportspersons
-            </p>
-          </div>
-
-
-          <div className="bg-[#111827] border border-gray-800 p-10 rounded-xl text-center hover:border-red-500 hover:bg-[#141c2f] transition">
-            <Star className="h-10 w-10 text-red-400 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Top Performers</h3>
-            <p className="text-sm text-gray-400">
-              Discover the best athletes
             </p>
           </div>
 
