@@ -136,13 +136,16 @@ const Home = () => {
           </Link>
 
 
-          <div className="bg-[#111827] border border-gray-800 p-10 rounded-xl text-center hover:border-red-500 hover:bg-[#141c2f] transition cursor-pointer">
-            <Search className="h-10 w-10 text-red-400 mx-auto mb-3" />
-            <h3 className="font-semibold mb-1">Search Players</h3>
-            <p className="text-sm text-gray-400">
-              Find specific sportspersons
-            </p>
-          </div>
+          <Link
+  to="/search"
+  className="bg-[#111827] border border-gray-800 p-10 rounded-xl text-center hover:border-red-500 hover:bg-[#141c2f] transition block"
+>
+  <Search className="h-10 w-10 text-red-400 mx-auto mb-3" />
+  <h3 className="font-semibold mb-1">Search Players</h3>
+  <p className="text-sm text-gray-400">
+    Find specific sportspersons
+  </p>
+</Link>
 
         </div>
         </div>
