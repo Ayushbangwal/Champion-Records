@@ -30,7 +30,8 @@ const [countrySearch, setCountrySearch] = useState("");
   // Loading
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-[400px] bg-gradient-to-r from-black via-red-950/30 to-black text-white">
+      <div className="flex justify-center items-center min-h-[400px] bg-[#0f172a] text-white">
+
         <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto mb-4" />
         <p className="text-gray-400">Loading sportspersons...</p>
       </div>
@@ -40,7 +41,7 @@ const [countrySearch, setCountrySearch] = useState("");
   // Error
   if (error) {
     return (
-      <div className="text-center py-12 bg-gradient-to-r from-black via-red-950/30 to-black text-white">
+<div className="text-center py-12 bg-[#0f172a] text-white">
         <p className="text-red-500 font-semibold">Error loading sportspersons</p>
         <button onClick={() => refetch()} className="btn-primary mt-4">
           Try Again
@@ -70,8 +71,7 @@ return matchesSport && matchesNationality && matchesSearch;
 });
 
   return (
-    <div className="space-y-6 bg-gradient-to-r from-black via-red-950/30 to-black text-white min-h-screen p-6">
-
+    <div className="space-y-6 bg-[#0f172a] text-white min-h-screen p-6">
       {/* HEADER */}
       <div className="flex justify-between items-center">
 
@@ -154,7 +154,7 @@ return matchesSport && matchesNationality && matchesSearch;
           placeholder="Search sportsperson..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="bg-[#111827] text-white border border-gray-800 pl-10 pr-4 py-3 w-full rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none"
+          className="bg-[#111827] text-white border border-gray-800 pl-10 pr-4 py-3 w-full rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
       </div>
 
